@@ -11,7 +11,7 @@ const RegisterPage = (): JSX.Element => {
 
   return (
     <section className={styles.registerPage}>
-      <h1>Sign up today</h1>
+      <h1>Sign up today!</h1>
       <span>Instantly connect with your friends and enemies</span>
       <RegisterForm onSubmit={handleSubmit} />
     </section>
