@@ -1,0 +1,50 @@
+:root {
+  --primaryColor: #ba000d;
+  --secondaryColor: #3a3a3a;
+  --primaryFont: "Signika Negative", sans-serif;
+  --displayFont: "Fredoka One", sans-serif;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--primaryFont);
+  font-size: 1.4rem;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+}
+
+button {
+  background-color: transparent;
+}
+
+a,
+a:active,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
