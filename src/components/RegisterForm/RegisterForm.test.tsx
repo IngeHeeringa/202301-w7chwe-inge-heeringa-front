@@ -57,13 +57,16 @@ describe("Given a RegisterForm component", () => {
   describe("When it receives an onSubmit function and the user submits the form", () => {
     test("Then the received onSubmit function should be invoked", async () => {
       const onSubmit = jest.fn();
+
       render(<RegisterForm onSubmit={onSubmit} />);
 
       await userEvent.type(
         screen.getByRole("textbox", { name: /username/i }),
         "User"
       );
+
       await userEvent.type(screen.getByLabelText(/password/i), "user123");
+
       await userEvent.type(
         screen.getByRole("textbox", { name: /email/i }),
         "user@user.com"

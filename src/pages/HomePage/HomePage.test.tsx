@@ -5,7 +5,7 @@ import HomePage from "./HomePage";
 describe("Given a HomePage", () => {
   describe("When rendered", () => {
     test("Then it should show the title 'Welcome to Frenemies' in a heading", () => {
-      const expectedTitle = "Welcome to Frenemies";
+      const expectedTitle = /welcome to frenemies/i;
       render(<HomePage />, { wrapper: BrowserRouter });
 
       const title = screen.getByRole("heading", { name: expectedTitle });
@@ -14,7 +14,7 @@ describe("Given a HomePage", () => {
     });
 
     test("Then it should show a call to action 'Sign up' in an anchor", () => {
-      const expectedCallToAction = "Sign up";
+      const expectedCallToAction = /sign up/i;
       render(<HomePage />, { wrapper: BrowserRouter });
 
       const callToAction = screen.getByRole("link", {
@@ -25,7 +25,7 @@ describe("Given a HomePage", () => {
     });
 
     test("Then it should show a call to action 'Log in' in an anchor", () => {
-      const expectedCallToAction = "Log in";
+      const expectedCallToAction = /log in/i;
       render(<HomePage />, { wrapper: BrowserRouter });
 
       const callToAction = screen.getByRole("link", {

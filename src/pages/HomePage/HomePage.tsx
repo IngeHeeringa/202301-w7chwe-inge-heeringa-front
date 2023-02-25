@@ -7,7 +7,7 @@ const HomePage = (): JSX.Element => {
     <section className={styles.homePage}>
       <h1 className="main-title">Welcome to Frenemies</h1>
       <div className={styles.wrapper}>
-        <Link to="/">
+        <Link to="/register">
           <Button variant="contained" size="large">
             Sign up
           </Button>
