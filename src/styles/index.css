@@ -15,12 +15,18 @@ body {
   margin: 0;
   font-family: var(--primaryFont);
   font-size: 1.4rem;
+  color: var(--secondaryColor);
 }
 
 h1,
 h2,
 h3 {
   font-weight: normal;
+}
+
+h1 {
+  color: var(--primaryColor);
+  font-size: 3rem;
 }
 
 ul,
