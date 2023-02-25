@@ -22,6 +22,7 @@ const RegisterForm = (): JSX.Element => {
         id="outlined-password-input"
         label="Password"
         name="password"
+        type="password"
       />
       <TextField
         required
