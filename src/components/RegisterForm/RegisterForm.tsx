@@ -40,26 +40,9 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps): JSX.Element => {
       onSubmit={handleSubmit}
       autoComplete="off"
     >
-      <TextField
-        required
-        id="outlined-username-input"
-        name="username"
-        label="Username"
-      />
-      <TextField
-        required
-        id="outlined-password-input"
-        label="Password"
-        name="password"
-        type="password"
-      />
-      <TextField
-        required
-        id="outlined-email-input"
-        label="Email"
-        type="email"
-        name="email"
-      />
+      <TextField required name="username" label="Username" />
+      <TextField required label="Password" name="password" type="password" />
+      <TextField required label="Email" type="email" name="email" />
       <Button variant="contained" component="label" endIcon={<PhotoCamera />}>
         Upload avatar
         <input
