@@ -38,6 +38,7 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps): JSX.Element => {
       encType="multipart/form"
       className={styles.registerForm}
       onSubmit={handleSubmit}
+      autoComplete="off"
     >
       <TextField
         required

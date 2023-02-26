@@ -39,7 +39,12 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps): JSX.Element => {
   };
 
   return (
-    <Box component="form" className={styles.loginForm} onSubmit={handleSubmit}>
+    <Box
+      component="form"
+      className={styles.loginForm}
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <TextField
         required
         id="outlined-username-input"
