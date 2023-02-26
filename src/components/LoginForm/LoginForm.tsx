@@ -1,8 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
+import styles from "./LoginForm.module.css";
 
 const LoginForm = (): JSX.Element => {
   return (
-    <Box component="form">
+    <Box component="form" className={styles.loginForm}>
       <TextField
         required
         id="outlined-username-input"
