@@ -5,6 +5,7 @@ import { CustomTokenPayload, LoginResponse, UserCredentials } from "../types";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
+  const tokenKey = "token";
 
   const registerUser = async (data: FormData) => {
     const response = await fetch(
@@ -21,7 +22,6 @@ const useUser = () => {
   };
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const tokenKey = "token";
     const response = await fetch(
       `${process.env.REACT_APP_USER_URL}users/login`,
       {
