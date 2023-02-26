@@ -1,4 +1,11 @@
+import decode from "jwt-decode";
+import { loginUserActionCreator } from "../store/features/userSlice";
+import { useAppDispatch } from "../store/hooks";
+import { CustomTokenPayload, LoginResponse, UserCredentials } from "../types";
+
 const useUser = () => {
+  const dispatch = useAppDispatch();
+
   const registerUser = async (data: FormData) => {
     const response = await fetch(
       `${process.env.REACT_APP_USER_URL}users/register`,
@@ -9,11 +16,33 @@ const useUser = () => {
     );
 
     if (!response.ok) {
-      throw new Error(await response.json());
+      throw new Error();
     }
   };
 
-  return { registerUser };
+  const loginUser = async (userCredentials: UserCredentials) => {
+    const tokenKey = "token";
+    const response = await fetch(
+      `${process.env.REACT_APP_USER_URL}users/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(userCredentials),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+
+    const { token } = (await response.json()) as LoginResponse;
+
+    const { username } = decode(token) as CustomTokenPayload;
+
+    localStorage.setItem(tokenKey, token);
+
+    dispatch(loginUserActionCreator({ username, token }));
+  };
+
+  return { registerUser, loginUser };
 };
 
 export default useUser;

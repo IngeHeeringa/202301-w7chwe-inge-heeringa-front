@@ -1,12 +1,23 @@
+import { configureStore } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { userReducer } from "../../store/features/userSlice";
 import RegisterPage from "./RegisterPage";
+
+const store = configureStore({
+  reducer: { user: userReducer },
+});
 
 describe("Given a RegisterPage", () => {
   describe("When rendered", () => {
     test("Then it should show the title 'Sign up today!' in a heading", () => {
-      const expectedTitle = "Sign up today!";
+      const expectedTitle = /sign up today!/i;
 
-      render(<RegisterPage />);
+      render(
+        <Provider store={store}>
+          <RegisterPage />
+        </Provider>
+      );
 
       const title = screen.getByRole("heading", { name: expectedTitle });
 
@@ -15,9 +26,13 @@ describe("Given a RegisterPage", () => {
 
     test("Then it should show the subtitle 'Instantly connect with your friends and enemies'", () => {
       const expectedSubtitle =
-        "Instantly connect with your friends and enemies";
+        /instantly connect with your friends and enemies/i;
 
-      render(<RegisterPage />);
+      render(
+        <Provider store={store}>
+          <RegisterPage />
+        </Provider>
+      );
 
       const subtitle = screen.getByText(expectedSubtitle);
 
@@ -27,7 +42,11 @@ describe("Given a RegisterPage", () => {
     test("Then it should show a submit button to sign up", () => {
       const expectedButtonText = /sign up/i;
 
-      render(<RegisterPage />);
+      render(
+        <Provider store={store}>
+          <RegisterPage />
+        </Provider>
+      );
 
       const signUpButton = screen.getByRole("button", {
         name: expectedButtonText,
