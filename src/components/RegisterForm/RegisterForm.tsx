@@ -4,12 +4,14 @@ import TextField from "@mui/material/TextField";
 import styles from "./RegisterForm.module.css";
 import { PhotoCamera } from "@mui/icons-material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export interface RegisterFormProps {
   onSubmit: (data: FormData) => void;
+  error: boolean;
 }
 
-const RegisterForm = ({ onSubmit }: RegisterFormProps): JSX.Element => {
+const RegisterForm = ({ onSubmit, error }: RegisterFormProps): JSX.Element => {
   const [avatar, setAvatar] = useState<File>();
 
   const handleChangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +68,19 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps): JSX.Element => {
       <Button variant="contained" type="submit">
         Sign up
       </Button>
+      {error && (
+        <div className={styles.registerError}>
+          <span className={styles.registerError__generalMessage}>
+            User already exists
+          </span>
+          <span className={styles.registerError__specificMessage}>
+            If you already have an account,
+            <Link to="/login" className={styles.registerError__redirect}>
+              go to the login page
+            </Link>
+          </span>
+        </div>
+      )}
     </Box>
   );
 };
