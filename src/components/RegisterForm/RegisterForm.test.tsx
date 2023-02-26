@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import RegisterForm from "./RegisterForm";
@@ -72,27 +72,10 @@ describe("Given a RegisterForm component", () => {
 
       render(<RegisterForm onSubmit={onSubmit} error={error} />);
 
-      await act(
-        async () =>
-          await userEvent.type(screen.getByLabelText(/username/i), "User")
-      );
-
-      await act(
-        async () =>
-          await userEvent.type(screen.getByLabelText(/password/i), "user123")
-      );
-
-      await act(
-        async () =>
-          await userEvent.type(screen.getByLabelText(/email/i), "user@user.com")
-      );
-
-      await act(
-        async () =>
-          await userEvent.click(
-            screen.getByRole("button", { name: /sign up/i })
-          )
-      );
+      await userEvent.type(screen.getByLabelText(/username/i), "User");
+      await userEvent.type(screen.getByLabelText(/password/i), "user123");
+      await userEvent.type(screen.getByLabelText(/email/i), "user@user.com");
+      await userEvent.click(screen.getByRole("button", { name: /sign up/i }));
 
       expect(onSubmit).toHaveBeenCalled();
     });
