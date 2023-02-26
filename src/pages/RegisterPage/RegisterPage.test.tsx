@@ -1,12 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event/";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { userReducer } from "../../store/features/userSlice";
 import RegisterPage from "./RegisterPage";
 
 const store = configureStore({
   reducer: { user: userReducer },
 });
+
+jest.mock("../../hooks/useUser", () => ({
+  __esModule: true,
+  default: () => ({
+    registerUser: jest.fn(),
+  }),
+}));
 
 describe("Given a RegisterPage", () => {
   describe("When rendered", () => {
@@ -53,6 +62,28 @@ describe("Given a RegisterPage", () => {
       });
 
       expect(signUpButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When the register form is submitted", () => {
+    test("Then it should show a redirect button to the login page", async () => {
+      render(
+        <Provider store={store}>
+          <RegisterPage />
+        </Provider>,
+        { wrapper: BrowserRouter }
+      );
+
+      userEvent.type(screen.getByLabelText(/username/i), "User");
+      userEvent.type(screen.getByLabelText(/password/i), "user123");
+      userEvent.type(screen.getByLabelText(/email/i), "user@user.com");
+      userEvent.click(screen.getByRole("button", { name: /sign up/i }));
+
+      const redirectButton = await screen.findByRole("button", {
+        name: /log in/i,
+      });
+
+      expect(redirectButton).toBeInTheDocument();
     });
   });
 });
