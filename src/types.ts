@@ -1,3 +1,5 @@
+import { JwtPayload } from "jwt-decode";
+
 export interface UserLoginStructure {
   username: string;
   token: string;
@@ -20,6 +22,14 @@ export interface ApiResponseStructure {
     avatar: string;
     id: string;
   }[];
+}
+
+export interface LoginResponse {
+  token: string;
+}
+
+export interface CustomTokenPayload extends JwtPayload {
+  username: string;
 }
 
 export type UsersStructure = UserLoginStructure[];

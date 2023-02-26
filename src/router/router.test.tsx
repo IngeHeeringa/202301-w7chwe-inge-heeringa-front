@@ -1,6 +1,13 @@
+import { configureStore } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import { userReducer } from "../store/features/userSlice";
 import { routes } from "./router";
+
+const store = configureStore({
+  reducer: { user: userReducer },
+});
 
 describe("Given the router element", () => {
   describe("When the HomePage is rendered", () => {
@@ -29,7 +36,11 @@ describe("Given the router element", () => {
         initialEntries: ["/register"],
       });
 
-      render(<RouterProvider router={router} />);
+      render(
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      );
 
       const signUpButton = screen.getByRole("button", {
         name: expectedButtonText,
