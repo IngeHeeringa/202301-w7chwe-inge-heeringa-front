@@ -1,15 +1,15 @@
 const useUser = () => {
   const registerUser = async (data: FormData) => {
     const response = await fetch(
-      `https://two02301-w7chwe-inge-heeringa-back.onrender.com/users/register`,
+      `${process.env.REACT_APP_USER_URL}users/register`,
       {
         method: "POST",
         body: data,
       }
     );
 
-    if (response.ok) {
-      await response.json();
+    if (!response.ok) {
+      throw new Error(await response.json());
     }
   };
 

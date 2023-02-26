@@ -3,6 +3,24 @@ import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./router";
 
 describe("Given the router element", () => {
+  describe("When the HomePage is rendered", () => {
+    test("Then it should show a title with the text 'Welcome to Frenemies' in a heading", async () => {
+      const expectedTitle = /welcome to frenemies/i;
+
+      const router = createMemoryRouter(routes, {
+        initialEntries: ["/"],
+      });
+
+      render(<RouterProvider router={router} />);
+
+      const title = screen.getByRole("heading", {
+        name: expectedTitle,
+      });
+
+      await expect(title).toBeInTheDocument();
+    });
+  });
+
   describe("When the RegisterPage is rendered", () => {
     test("Then it should show a submit button with the text 'Sign up'", async () => {
       const expectedButtonText = /sign up/i;

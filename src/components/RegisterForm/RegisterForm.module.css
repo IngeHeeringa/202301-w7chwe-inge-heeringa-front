@@ -2,5 +2,32 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 300px;
+  width: 300px;
+}
+
+.registerError {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.2rem;
+  border: 1px solid var(--primaryColor);
+  padding: 15px 10px;
+  text-align: center;
+}
+
+.registerError__generalMessage {
+  font-weight: bold;
+  color: var(--primaryColor);
+  font-size: 1.3rem;
+}
+
+.registerError__specificMessage {
+  font-size: 1rem;
+}
+
+.registerError__redirect,
+.registerError__redirect:visited,
+.registerError__redirect:active {
+  color: var(--primaryColor);
+  padding-left: 3px;
 }
