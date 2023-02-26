@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { UserCredentials } from "../../types";
 import styles from "./LoginForm.module.css";
 
@@ -47,14 +48,12 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps): JSX.Element => {
     >
       <TextField
         required
-        id="outlined-username-input"
         name="username"
         label="Username"
         onChange={handleChangeUsername}
       />
       <TextField
         required
-        id="outlined-password-input"
         label="Password"
         name="password"
         type="password"
@@ -63,6 +62,19 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps): JSX.Element => {
       <Button variant="contained" type="submit">
         Log in
       </Button>
+      {error && (
+        <div className={styles.loginError}>
+          <span className={styles.loginError__generalMessage}>
+            Wrong credentials
+          </span>
+          <span className={styles.loginError__specificMessage}>
+            Not a member?
+            <Link to="/register" className={styles.loginError__redirect}>
+              Sign up now!
+            </Link>
+          </span>
+        </div>
+      )}
     </Box>
   );
 };
