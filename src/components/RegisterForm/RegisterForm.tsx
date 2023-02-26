@@ -24,7 +24,10 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps): JSX.Element => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    formData.append("avatar", avatar!);
+
+    if (avatar) {
+      formData.append("avatar", avatar);
+    }
 
     onSubmit(formData);
   };
