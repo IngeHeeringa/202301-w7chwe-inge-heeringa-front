@@ -12,7 +12,7 @@ const HomePage = (): JSX.Element => {
             Sign up
           </Button>
         </Link>
-        <Link to="/">
+        <Link to="/login">
           <Button variant="contained" size="large">
             Log in
           </Button>

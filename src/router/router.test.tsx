@@ -38,4 +38,22 @@ describe("Given the router element", () => {
       await expect(signUpButton).toBeInTheDocument();
     });
   });
+
+  describe("When the LoginPage is rendered", () => {
+    test("Then it should show a title with the text 'Welcome back' in a heading", async () => {
+      const expectedTitle = /welcome back/i;
+
+      const router = createMemoryRouter(routes, {
+        initialEntries: ["/login"],
+      });
+
+      render(<RouterProvider router={router} />);
+
+      const title = screen.getByRole("heading", {
+        name: expectedTitle,
+      });
+
+      await expect(title).toBeInTheDocument();
+    });
+  });
 });
