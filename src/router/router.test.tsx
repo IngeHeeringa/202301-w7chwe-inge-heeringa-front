@@ -58,7 +58,11 @@ describe("Given the router element", () => {
         initialEntries: ["/login"],
       });
 
-      render(<RouterProvider router={router} />);
+      render(
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      );
 
       const title = screen.getByRole("heading", {
         name: expectedTitle,
