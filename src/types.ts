@@ -1,28 +1,15 @@
-export enum Relationship {
-  friend,
-  enemy,
-  stranger,
+export interface UserLoginStructure {
+  username: string;
+  token: string;
 }
 
-export interface UserStructure {
-  username: string;
-  password: string;
-  email: string;
-  avatar: string;
+export interface UserState extends UserLoginStructure {
   isLogged: boolean;
-  friends: UserInfoUi[];
-  enemies: UserInfoUi[];
 }
 
 export interface UserCredentials {
   username: string;
   password: string;
-}
-
-export interface UserInfoUi {
-  username: string;
-  avatar: string;
-  relationship: Relationship;
 }
 
 export interface ApiResponseStructure {
@@ -35,4 +22,4 @@ export interface ApiResponseStructure {
   }[];
 }
 
-export type UsersStructure = UserStructure[];
+export type UsersStructure = UserLoginStructure[];
