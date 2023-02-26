@@ -4,3 +4,30 @@
   gap: 20px;
   width: 300px;
 }
+
+.loginError {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.2rem;
+  border: 1px solid var(--primaryColor);
+  padding: 15px 10px;
+  text-align: center;
+}
+
+.loginError__generalMessage {
+  font-weight: bold;
+  color: var(--primaryColor);
+  font-size: 1.3rem;
+}
+
+.loginError__specificMessage {
+  font-size: 1rem;
+}
+
+.loginError__redirect,
+.loginError__redirect:visited,
+.loginError__redirect:active {
+  color: var(--primaryColor);
+  padding-left: 3px;
+}

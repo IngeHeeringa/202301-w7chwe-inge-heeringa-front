@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event/";
+import { BrowserRouter } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 describe("Given a LoginForm component", () => {
@@ -52,6 +53,38 @@ describe("Given a LoginForm component", () => {
       await userEvent.click(screen.getByRole("button", { name: /log in/i }));
 
       expect(onSubmit).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it receives an onSubmit function and a positive error state", () => {
+    test("Then it should show the feedback 'Wrong credentials'", async () => {
+      const onSubmit = jest.fn();
+      const error = true;
+      const expectedFeedbackMessage = /wrong credentials/i;
+
+      render(<LoginForm onSubmit={onSubmit} error={error} />, {
+        wrapper: BrowserRouter,
+      });
+
+      const feedbackMessage = screen.getByText(expectedFeedbackMessage);
+
+      expect(feedbackMessage).toBeInTheDocument();
+    });
+
+    test("Then it should show a redirect link to the login page with text 'Sign up now!'", async () => {
+      const onSubmit = jest.fn();
+      const error = true;
+      const expectedRedirectText = /sign up now!/i;
+
+      render(<LoginForm onSubmit={onSubmit} error={error} />, {
+        wrapper: BrowserRouter,
+      });
+
+      const redirectText = screen.getByRole("link", {
+        name: expectedRedirectText,
+      });
+
+      expect(redirectText).toBeInTheDocument();
     });
   });
 });
