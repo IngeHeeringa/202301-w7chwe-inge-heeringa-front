@@ -65,7 +65,7 @@ describe("Given a RegisterPage", () => {
     });
   });
 
-  describe("When the register form is submitted", () => {
+  describe("When the register form is submitted successfully", () => {
     test("Then it should show a redirect button to the login page", async () => {
       render(
         <Provider store={store}>
@@ -74,10 +74,10 @@ describe("Given a RegisterPage", () => {
         { wrapper: BrowserRouter }
       );
 
-      userEvent.type(screen.getByLabelText(/username/i), "User");
-      userEvent.type(screen.getByLabelText(/password/i), "user123");
-      userEvent.type(screen.getByLabelText(/email/i), "user@user.com");
-      userEvent.click(screen.getByRole("button", { name: /sign up/i }));
+      await userEvent.type(screen.getByLabelText(/username/i), "User");
+      await userEvent.type(screen.getByLabelText(/password/i), "user123");
+      await userEvent.type(screen.getByLabelText(/email/i), "user@user.com");
+      await userEvent.click(screen.getByRole("button", { name: /sign up/i }));
 
       const redirectButton = await screen.findByRole("button", {
         name: /log in/i,
